@@ -3,16 +3,21 @@ const deleteNotionData = require("./module/deleteNotionData");
 const addNotionData = require("./module/addNotionPage");
 const fs = require('fs');
 const { apiDocFilePath, apiBlank } = require("./config/setting");
+const ora = require('ora');
 
 const main = async () => {
+    const spinner = ora('').start();
     try{
         // 노션 데이터베이스 컬럼 정보 확인
+        spinner.text = 'Loading Database Column Check';
         await columnCheck();
 
         // 데이터베이스 페이지 모두 삭제
+        spinner.text = 'Loading Delete All Database pages';
         await deleteNotionData();
 
         // API_DOC 읽기
+        spinner.text = 'Loading Read API JS';
         const fileArray = await fs.readdirSync('./api_doc');
         const apiDocArray = [];
         for(const fileName of fileArray){
@@ -34,14 +39,19 @@ const main = async () => {
 
         // 데이터베이스 페이지 추가
         try{
-            for(const apiDoc of apiDocArray){
+            for(const i in apiDocArray){
+                spinner.text = `Insert Notion Page ${parseInt(i) + 1}/${apiDocArray.length}`;
+                const apiDoc = apiDocArray[i];
                 await addNotionData(apiDoc);
             }
+            spinner.stop();
+            console.log('All Success');
         }catch(err){
+            spinner.stop();
             console.log('실패했습니다.');
         }
-        
     }catch(err){
+        spinner.stop();
         console.log(err);
     }
 }

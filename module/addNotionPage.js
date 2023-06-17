@@ -5,8 +5,6 @@ const notion = require("./notion");
 
 const addNotionData = (data) => {
     return new Promise(async (resolve ,reject) => {
-        const method = data.method || '';
-        const entryPoint = data.entryPoint || '';
         const property = createProperty(data);
         const children = createChildren(data);
 
@@ -15,10 +13,10 @@ const addNotionData = (data) => {
                 parent: {
                     database_id: notionDbId
                 },
-                children: method === '' ? undefined : children,
+                children: Object.keys(data).length === 0 ? undefined : children,
                 properties: property
             });
-            
+
             resolve(response);
         }catch(err){
             reject(err);
