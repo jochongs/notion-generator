@@ -3,7 +3,7 @@ const createChildren = require("./createChildren");
 const createProperty = require("./createProperty");
 const notion = require("./notion");
 
-const addNotionData = (data) => {
+const addNotionPage = (data) => {
     return new Promise(async (resolve ,reject) => {
         const property = createProperty(data);
         const children = createChildren(data);
@@ -24,4 +24,4 @@ const addNotionData = (data) => {
     })
 }
 
-module.exports = addNotionData;
+module.exports = addNotionPage;

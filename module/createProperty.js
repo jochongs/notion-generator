@@ -2,7 +2,6 @@ const column = require("../config/column");
 
 const createProperty = (data) => {
     const columnNameArray = Object.keys(column);
-
     const property = {};
 
     for(const i in columnNameArray){
