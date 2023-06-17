@@ -16,7 +16,6 @@ const deleteNotionData = async () => {
                     if(!response.has_more){
                         break;  
                     }
-                    console.log('작동중');
         
                     next_cursor = response.next_cursor;
                 }catch(err){

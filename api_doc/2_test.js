@@ -3,7 +3,7 @@ module.exports = [
 {
     done: true,
     method: 'GET',
-    entryPoint: '/test/all',
+    entryPoint: '/test/all/hi',
     description: '테스트 데이터 가져오기',
     auth: '사용자',
     request: 
