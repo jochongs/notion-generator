@@ -2,7 +2,7 @@
 
 ## :key: **목표**
 API 명세서를 매번 Notion에 들어가서 고치기가 힘들었다. 
-폴더 하나에 명세서 관련한 내용을 JSON으로 적고 한 번에 Notion에 옮겨지도록 해보려한다.
+폴더 하나에 명세서 관련한 내용을 js로 적고 한 번에 Notion에 옮겨지도록 해보자.
 
 
 <br/>
@@ -41,7 +41,7 @@ API 명세서를 매번 Notion에 들어가서 고치기가 힘들었다.
 
 ### 3) 노션 데이터베이스 컬럼 정하기
 * 노션에서 데이터베이스의 컬럼을 추가하고 추가한 컬림의 이름과 타입을을 ./config/column.js에 적는다.
-<br/>`select, checkbox, text, rich_text 타입만을 지원합니다.`
+<br/>`select`, `checkbox`, `text`, `rich_text` 타입만을 지원합니다.
 
 ### 4) 삽입할 데이터 작성하기
 * .env에 API_DOC_FILE_PATH아래에 js파일로 문서를 작성한다.
