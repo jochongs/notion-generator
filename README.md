@@ -67,7 +67,7 @@ API 명세서를 매번 Notion에 들어가서 고치기가 힘들었다.
 <br/>
 
 ## 💡 **사용**
-![문서 자동화](https://github.com/Stageus/shoot-backend/assets/54374610/e7884663-f55d-427a-808a-c5e8f8414da4)
+![notion_generator](https://github.com/jochongs/notion_auto_generator/assets/54374610/0a0d648d-a4c4-4974-b53e-0e43286b88b2)
 
 
 <br/>
