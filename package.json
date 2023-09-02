@@ -13,5 +13,7 @@
     "dotenv": "^16.1.4",
     "ora": "^5.4.1"
   },
-  "bin": "./main.js"
+  "bin": {
+    "notion": "./bin.js"
+  }
 }
