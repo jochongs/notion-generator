@@ -4,11 +4,11 @@ const createProperty = require("./createProperty");
 const notion = require("./notion");
 
 const addNotionPage = (data) => {
-    return new Promise(async (resolve ,reject) => {
+    return new Promise(async (resolve, reject) => {
         const property = createProperty(data);
         const children = createChildren(data);
 
-        try{
+        try {
             const response = await notion.pages.create({
                 parent: {
                     database_id: notionDbId
@@ -18,10 +18,10 @@ const addNotionPage = (data) => {
             });
 
             resolve(response);
-        }catch(err){
+        } catch (err) {
             reject(err);
         }
-    })
+    });
 }
 
 module.exports = addNotionPage;

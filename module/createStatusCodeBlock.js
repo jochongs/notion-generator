@@ -1,6 +1,17 @@
 const { defaultMessage200, defaultMessage400, defaultMessage401, defaultMessage403, defaultMessage409, defaultMessage500 } = require("../config/setting");
 
-const createStatusCodeBlock = (statusCodeData = {}) => {
+const createStatusCodeBlock = (statusCodeData) => {
+    if (typeof statusCodeData !== Object) {
+        statusCodeData = {
+            "200": "default",
+            "400": "default",
+            "401": "default",
+            "403": "default",
+            "409": "default",
+            "500": "default"
+        };
+    }
+
     const statusCodeArray = Object.keys(statusCodeData);
     const insertStatusCode = [];
     let i = 0; // 마지막 개행 삭제를 위한 index
@@ -15,16 +26,16 @@ const createStatusCodeBlock = (statusCodeData = {}) => {
         500: defaultMessage500
     }
 
-    for(const statusCode of statusCodeArray){
+    for (const statusCode of statusCodeArray) {
         i++;
 
         //색 설정
         let color = '';
-        if(statusCode[0] == 2){
+        if (statusCode[0] == 2) {
             color = 'blue';
-        }else if(statusCode[0] == 3 || statusCode[0] == 4){
+        } else if (statusCode[0] == 3 || statusCode[0] == 4) {
             color = 'yellow';
-        }else{
+        } else {
             color = 'red';
         }
 
@@ -44,8 +55,8 @@ const createStatusCodeBlock = (statusCodeData = {}) => {
             {
                 type: 'text',
                 text: {
-                    content: ' - ' 
-                        + (statusCodeData[statusCode] === 'default' ? defaultMessage[statusCode] : statusCodeData[statusCode]) 
+                    content: ' - '
+                        + (statusCodeData[statusCode] === 'default' ? defaultMessage[statusCode] : statusCodeData[statusCode])
                         + (statusCodeArray.length === i ? '' : '\n')
                 }
             }

@@ -1,8 +1,9 @@
+const generateObjectString = require("./generateObjectString");
 const createStatusCodeBlock = require("./createStatusCodeBlock");
 
 const createChildren = (data) => {
     const requestData = data.request || '';
-    const resultData = data.result || '';
+    const resultData = data.response || '';
     const noteData = data.note || '';
     const statusCodeData = createStatusCodeBlock(data.statusCode);
 
@@ -28,7 +29,7 @@ const createChildren = (data) => {
                     {
                         type: 'text',
                         text: {
-                            content: requestData
+                            content: generateObjectString.value(requestData)
                         }
                     }
                 ]
@@ -55,7 +56,7 @@ const createChildren = (data) => {
                     {
                         type: 'text',
                         text: {
-                            content: resultData
+                            content: generateObjectString.value(resultData)
                         }
                     }
                 ]
