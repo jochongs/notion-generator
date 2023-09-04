@@ -1,11 +1,9 @@
 {
-  "name": "auto_create_notion",
+  "name": "notion-generator",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
-  "scripts": {
-    "api": "node main.js"
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
