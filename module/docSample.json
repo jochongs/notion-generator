@@ -1,0 +1,25 @@
+[
+    {
+        "done": false,
+        "method": "GET | POST | PUT | DELETE",
+        "entryPoint": "/user/all",
+        "description": "설명",
+        "auth": "사용자",
+        "request": {
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": {},
+            "query": {
+                "page": "number // 정렬 방법"
+            },
+            "path": {}
+        },
+        "response": {
+            "message": "string",
+            "status": "number",
+            "data": {}
+        },
+        "note": ""
+    }
+]

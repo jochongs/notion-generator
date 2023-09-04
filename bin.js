@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 const path = require('path');
 const fs = require('fs');
+const setting = require('./config/setting');
 
-const mainFilePath = path.resolve(__dirname, '..', 'notion-generator', 'main');
-const envFilePath = path.resolve(__dirname, '..', '..', '.env');
+const rootDirectoryFilePath = path.resolve(__dirname, '..', '..');
+const npmMoudleRootDirecotry = path.resolve(__dirname, '..', 'notion-generator');
+
+const mainFilePath = path.resolve(npmMoudleRootDirecotry, 'main');
+const envFilePath = path.resolve(rootDirectoryFilePath, '.env');
+const docDirPath = path.resolve(rootDirectoryFilePath, setting.apiDocFilePath);
 
 const envSample = `
 # -------------------------------- 노션 키 값 (필수) ---------------------------------
@@ -32,18 +37,32 @@ NOTION_DATABASE_ID = 노션 데이터베이스 아이디
     try {
         if (!fs.existsSync(envFilePath)) {
             fs.writeFileSync(envFilePath, envSample);
-            console.log('.env 파일에 Notion 필수 값을 입력하고 다시 실행해주세요.');
+            console.log('.env 파일이 생성되었습니다. 필수 값을 채운 후 명령어를 다시 입력해주세요.');
             return;
         }
 
         if (!fs.readFileSync(envFilePath).includes('NOTION_API_KEY')) {
             fs.appendFileSync(envFilePath, `${envSample}\n`);
-            console.log('.env 파일에 Notion 필수 값을 입력하고 다시 실행해주세요.');
+            console.log('.env 파일에 필수값을 채운 후 명령어를 다시 입력해주세요.');
             return;
         }
     } catch (err) {
-        console.log(err);
         return console.log('failed to access .env');
+    }
+
+    try {
+        if (!fs.existsSync(docDirPath)) {
+            fs.mkdirSync(docDirPath);
+
+            fs.mkdirSync(path.resolve(docDirPath, 'components'));
+
+            fs.copyFileSync(path.resolve(npmMoudleRootDirecotry, 'module', 'docSample.json'), path.resolve(docDirPath, 'user.json'));
+
+            console.log(`${setting.apiDocFilePath}가 생성되었습니다. 명령어를 다시 입력하여 Notion Page를 생성하세요.`);
+            return;
+        }
+    } catch (err) {
+        return console.log(`failed to create ${setting.apiDocFilePath}`);
     }
 
     require(mainFilePath);
