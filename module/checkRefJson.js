@@ -1,6 +1,14 @@
 const path = require("path");
 
 const jsonRefCheck = (json, docFilePath) => {
+    if (json === null) {
+        return json;
+    }
+
+    if (json === undefined) {
+        return json;
+    }
+
     if (typeof json === 'string') {
         if (json[0] == '$') {
             try {
