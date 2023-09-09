@@ -1,7 +1,7 @@
 {
   "name": "notion-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "notion 데이터베이스 페이지 자동 생성기",
   "main": "main.js",
   "scripts": {},
   "author": "",
